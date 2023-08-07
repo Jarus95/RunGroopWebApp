@@ -19,9 +19,9 @@ namespace RunGroopWebApp.Controllers
             return View(clubs);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<ActionResult> Detail(int id)
         {
-            Club club = _context.Club.Include(i=>i.Address).FirstOrDefault(c => c.Id == id);
+            Club club = await _context.Club.Include(i=>i.Address).FirstOrDefaultAsyncs(c => c.Id == id);
             return View(club);
         }
     }

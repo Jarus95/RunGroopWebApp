@@ -20,9 +20,9 @@ namespace RunGroopWebApp.Controllers
             return View(races);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<ActionResult> Detail(int id)
         {
-            Race race = _context.Race.Include(i => i.Address).FirstOrDefault(c => c.Id == id);
+            Race race =  await _context.Race.Include(i => i.Address).FirstOrDefaultAsync(c => c.Id == id);
             return View(race);
         }
     }
