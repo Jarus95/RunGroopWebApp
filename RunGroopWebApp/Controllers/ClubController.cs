@@ -18,5 +18,11 @@ namespace RunGroopWebApp.Controllers
             List<Club> clubs = await _context.Club.ToListAsync();
             return View(clubs);
         }
+
+        public IActionResult Detail(int id)
+        {
+            Club club = _context.Club.Include(i=>i.Address).FirstOrDefault(c => c.Id == id);
+            return View(club);
+        }
     }
 }
